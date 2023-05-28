@@ -31,9 +31,10 @@ app.get('/', (req, res) => {
 app.post('/login', (req, res) => {
 
     try {
+        const { username, password} = req.body;
     let user = new User({
-        username: req.body.username,
-        password: req.body.password,
+        username,
+        password,
     });
     user.save();
    res.json({_id: user._id, username: user.username, passwrod: user.password}); 
