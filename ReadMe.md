@@ -15,9 +15,9 @@
 }
 ```
 
-- [ ]  You can make a *GET* request to **/api/users** to get a list of all users.
-- [ ]  The GET request to /api/users returns an array.
-- [ ]  respod:
+- [x]  You can make a *GET* request to **/api/users** to get a list of all users.
+- [x]  The GET request to /api/users returns an array.
+- respod:
 ``` bash
 [
 {

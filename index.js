@@ -44,6 +44,15 @@ app.post('/login', (req, res) => {
     }
 });
 
+app.get('/api/users', async (req, res) => {
+    try {
+    const query = await User.find({}).select({passwrod: -1, username: 1});
+    res.json(query);
+    }
+    catch(err) {
+        res.json({error: err});
+    }
+});
 
 // check the health of the connection to mongoose
 app.get('/mongoose/health', (req, res) => {
