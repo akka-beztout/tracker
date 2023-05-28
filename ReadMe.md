@@ -3,8 +3,10 @@
 
 # create a new user with username and password  
 - [ ] *GET* **/login** should serve the login page
-- [ ] *POST* to **/login** with a form-data  *username* and *password* will create a new user 
-- [ ]  respod as json:
+- [x] *POST* to **/login** with a form-data  *username* and *password* will create a new user 
+- [ ] multipart/form-data  (username, password)
+- [x] urlencoded (username, password)
+- [x]  respod as json:
 ``` bash
 {
   _id: "5fb5853f734231456ccb3b05",
