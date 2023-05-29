@@ -27,8 +27,8 @@
 ]
 ```
 ## after login
-- [ ] POST to /api/users/:_id/exercises with form data description, duration, and optionally date. If no date is supplied, the current date will be used.
-- [ ] The response returned from POST /api/users/:_id/exercises will be the user object with the exercise fields added.
+- [x] POST to /api/users/:_id/exercises with form data description, duration, and optionally date. If no date is supplied, the current date will be used.
+- [x] The response returned from POST /api/users/:_id/exercises will be the user object with the exercise fields added.
 ```bash
 {
   username: "fcc_test",
