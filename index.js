@@ -93,9 +93,32 @@ app.post('/api/users/:id/exercises', async (req, res) => {
 });
 
 app.get('/api/users/:_id/logs', async(req, res) => {
-    const {id} = req.params;
+    try {
+        const id = req.params._id;
+        const user = await User.findById(id);
+        const exercise = await Exercise.find({userId : id})
 
+        const log = exercise.map((item) => {
+            
+            return {
+                description: item.description,
+                duration: item.duration,
+                date: item.date.toDateString(),
+            }
+        });
+        res.json({
+            username: user.username,
+            count: exercise.length,
+            _id: user._id,
+            log: log,
+        });
+    }
+    catch(err) {
+        console.error(err);
+        res.json({error: err});
+    }
 });
+
 // check the health of the connection to mongoose
 app.get('/mongoose/health', (req, res) => {
     // if status is 1 then all good 

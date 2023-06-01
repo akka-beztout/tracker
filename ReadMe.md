@@ -39,13 +39,13 @@
   _id: "5fb5853f734231456ccb3b05"
 }
 ```
-- [ ] GET **/api/users/:_id/logs** to retrieve a full exercise log of any user.
-- [ ] GET **/api/users/:_id/logs** returns a user object with a *count* property representing the number of exercises that belong to that user.
-- [ ] Each item in the log array that is returned from GET **/api/users/:_id/logs** is an object that should have a *description*, *duration*, and *date* properties.
+- [x] GET **/api/users/:_id/logs** to retrieve a full exercise log of any user.
+- [x] GET **/api/users/:_id/logs** returns a user object with a *count* property representing the number of exercises that belong to that user.
+- [x] Each item in the log array that is returned from GET **/api/users/:_id/logs** is an object that should have a *description*, *duration*, and *date* properties.
 
-- [ ] The *description* property of any object in the log array that is returned from GET **/api/users/:_id/logs** should be a string.
-- [ ] The *duration* property of any object in the log array that is returned from GET **/api/users/:_id/logs** should be a number.
-- [ ] The *date* property of any object in the log array that is returned from GET **/api/users/:_id/logs** should be a string.
+- [x] The *description* property of any object in the log array that is returned from GET **/api/users/:_id/logs** should be a string.
+- [x] The *duration* property of any object in the log array that is returned from GET **/api/users/:_id/logs** should be a number.
+- [x] The *date* property of any object in the log array that is returned from GET **/api/users/:_id/logs** should be a string.
 - [ ] You can add **from**, **to** and **limit** parameters to a **GET** **/api/users/:_id/logs** request to retrieve part of the log of any user. *from* and *to* are dates in *yyyy-mm-dd* format. *limit* is an integer of how many logs to send back.
 
 ```javascript
