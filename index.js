@@ -91,6 +91,11 @@ app.post('/api/users/:id/exercises', async (req, res) => {
         res.json({error: err});
     }
 });
+
+app.get('/api/users/:_id/logs', async(req, res) => {
+    const {id} = req.params;
+
+});
 // check the health of the connection to mongoose
 app.get('/mongoose/health', (req, res) => {
     // if status is 1 then all good 
