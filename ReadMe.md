@@ -1,12 +1,11 @@
-#### this app is like the one we did on [freecodecamp](https://www.freecodecamp.org/learn/back-end-development-and-apis/back-end-development-and-apis-projects/exercise-tracker) but im trtying to add stuff to it as i learn
-
+# a CRUD Api using nodeJs, express.js, mongoDB, passport.js 
 
 # create a new user with username and password  
 - [ ] *GET* **/login** should serve the login page
 - [x] *POST* to **/login** with a form-data  *username* and *password* will create a new user 
 - [ ] multipart/form-data  (username, password)
 - [x] urlencoded (username, password)
-- [x]  respod as json:
+- [x]  respond as json:
 
 ```javascript
 {
