@@ -62,8 +62,8 @@ Log:
   }]
 }
 ```
-# OAuth
-- [ ] implement OAuth in your loging page
+# using Authentication 
+- [ ] implement passportjs 
 
 
 

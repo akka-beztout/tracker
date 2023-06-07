@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 require('dotenv').config()
 
 const mongoose = require('mongoose');
+const { query } = require('express');
 const { Schema } = mongoose;
 mongoose.connect(process.env.URI);
 
@@ -95,8 +96,19 @@ app.post('/api/users/:id/exercises', async (req, res) => {
 app.get('/api/users/:_id/logs', async(req, res) => {
     try {
         const id = req.params._id;
+        const {from, to, limit} = req.query;
         const user = await User.findById(id);
-        const exercise = await Exercise.find({userId : id})
+        let queryObj = {};
+        query['id'] = id;
+        if(from) {
+            queryObj = {
+                $gt: from,
+            }
+        }
+        
+
+        //const exercise = await Exercise.find({userId : id})
+        const exercise = await Exercise.find(queryObj).limit(limit);
 
         const log = exercise.map((item) => {
             
