@@ -61,6 +61,11 @@ Log:
   }]
 }
 ```
+# update exercise
+
+# delete user
+- [x] a DELETE request to **/api/users/:_id** will delete the user with all the exercises he had done 
+
 # using Authentication 
 - [ ] implement passportjs 
 

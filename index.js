@@ -99,7 +99,7 @@ app.get('/api/users/:_id/logs', async(req, res) => {
         const {from, to, limit} = req.query;
         const user = await User.findById(id);
         let queryObj = {};
-        query['id'] = id;
+        queryObj['userId'] = id;
         if(from) {
             queryObj = {
                 $gt: from,
@@ -127,10 +127,23 @@ app.get('/api/users/:_id/logs', async(req, res) => {
     }
     catch(err) {
         console.error(err);
-        res.json({error: err});
+        res.json({error: 'User not Found!'});
     }
 });
 
+// delete user 
+app.delete('/api/users/:_id', async(req, res) => {
+
+    const id = req.params._id;
+    try {
+        const delexercise = await Exercise.deleteMany({userId: id});
+        const deluser = await User.deleteOne({_id: id});
+        res.json({deleted_users: deluser, deleted_exercises: delexercise.deletedCount});
+    }
+    catch(err) {
+        console.error(err);
+    }
+});
 // check the health of the connection to mongoose
 app.get('/mongoose/health', (req, res) => {
     // if status is 1 then all good 
