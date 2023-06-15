@@ -144,6 +144,19 @@ app.delete('/api/users/:_id', async(req, res) => {
         console.error(err);
     }
 });
+app.delete('/api/users/:_id/exercise', async(req, res) => {
+
+    try {
+        const { description, duration, date} = req.body;
+
+        const delexercise = await Exercise.deleteOne({description: description, duration: duration, date: date});
+        res.json({delexercise});
+
+    }
+    catch(err) {
+        console.error(err);
+    }
+});
 // check the health of the connection to mongoose
 app.get('/mongoose/health', (req, res) => {
     // if status is 1 then all good 

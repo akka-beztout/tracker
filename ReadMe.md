@@ -66,6 +66,58 @@ Log:
 # delete user
 - [x] a DELETE request to **/api/users/:_id** will delete the user with all the exercises he had done 
 
+# delete exercise
+- [x] a DELETE request to **/api/users/:_id/exercises** with form-urlencoded(*description*, *duration*, *date*) will delete the exercise
+ - a get request to **/api/users/:_id/logs**
+ ```javascript
+ {
+  "username": "toufik",
+  "count": 2,
+  "_id": "6489f9fbc6ff7df278b6a524",
+  "log": [
+    {
+      "description": "plank",
+      "duration": 10,
+      "date": "Wed Oct 10 2012"
+    },
+    {
+      "description": "dips",
+      "duration": 20,
+      "date": "Wed Oct 11 2012"
+    }
+  ]
+}
+ ```
+## after delettion
+ - delete request to **/api/users/:_id/exercise** with form-urlencoded(*description*: dips, *duration*: 20, *date*: 2012-10-11)
+ ```javascript
+ {
+    "delexercise": {
+        "acknowledged": true,
+        "deletedCount": 1
+    }
+}
+```
+checking the logs again
+```javascript
+{
+  "username": "toufik",
+  "count": 1,
+  "_id": "6489f9fbc6ff7df278b6a524",
+  "log": [
+    {
+      "description": "plank",
+      "duration": 10,
+      "date": "Wed Oct 10 2012"
+    }
+  ]
+}
+```
+
+
+
+
+
 # using Authentication 
 - [ ] implement passportjs 
 
