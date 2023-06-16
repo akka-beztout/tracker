@@ -95,18 +95,25 @@ app.post('/api/users/:id/exercises', async (req, res) => {
 
 app.get('/api/users/:_id/logs', async(req, res) => {
     try {
+
         const id = req.params._id;
         const {from, to, limit} = req.query;
+
         const user = await User.findById(id);
+
         let queryObj = {};
         queryObj['userId'] = id;
         if(from) {
-            queryObj = {
+            queryObj['date'] = {
                 $gt: from,
             }
         }
+        if(to) {
+            queryObj['date'] = {
+                ...queryObj['date'], $lt: to,
+            }
+        }
         
-
         //const exercise = await Exercise.find({userId : id})
         const exercise = await Exercise.find(queryObj).limit(limit);
 

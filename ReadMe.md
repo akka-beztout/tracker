@@ -48,7 +48,8 @@
 - [x] The *description* property of any object in the log array that is returned from GET **/api/users/:_id/logs** should be a string.
 - [x] The *duration* property of any object in the log array that is returned from GET **/api/users/:_id/logs** should be a number.
 - [x] The *date* property of any object in the log array that is returned from GET **/api/users/:_id/logs** should be a string.
-- [ ] You can add **from**, **to** and **limit** parameters to a **GET** **/api/users/:_id/logs** request to retrieve part of the log of any user. *from* and *to* are dates in *yyyy-mm-dd* format. *limit* is an integer of how many logs to send back.
+- [x] You can add **from**, **to** and **limit** parameters to a **GET** **/api/users/:_id/logs** request to retrieve part of the log of any user. *from* and *to* are dates in *yyyy-mm-dd* format. *limit* is an integer of how many logs to send back.
+- example: get request to **api/users/:_id/logs?from=2019-01-01&to=2023-01-01&limit=3 => will give you 3 exercises from 2019=> 2023
 
 ```javascript
 Log:
