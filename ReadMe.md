@@ -1,4 +1,7 @@
 # a CRUD Api using nodeJs, express.js, mongoDB, passport.js(emplimenting some Authentication)
+- the api will let you create users stored in mongoDB and log there exercises
+- you can delete users and exercises 
+- you can filter logs 
 
 # create a new user with username and password  
 - [ ] *GET* **/login** should serve the login page
