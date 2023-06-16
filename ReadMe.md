@@ -1,4 +1,4 @@
-# a CRUD Api using nodeJs, express.js, mongoDB, passport.js 
+# a CRUD Api using nodeJs, express.js, mongoDB, passport.js(emplimenting some Authentication)
 
 # create a new user with username and password  
 - [ ] *GET* **/login** should serve the login page
@@ -26,6 +26,9 @@
 }
 ]
 ```
+# using Authentication 
+- [ ] implement passportjs 
+
 ## after login
 - [x] POST to **/api/users/:_id/exercises** with form-data *description*, *duration*, and optionally *date*. If no *date* is supplied, the current date will be used.
 - [x] The response returned from POST **/api/users/:_id/exercises** will be the user object with the exercise fields added.
@@ -62,12 +65,14 @@ Log:
 }
 ```
 # update exercise
+- [x] a PATCH request to **/api/exercise/:_exerciseId** with form-urlencoded(*description*, *duration*, *date*) will update the exercise 
 
 # delete user
 - [x] a DELETE request to **/api/users/:_id** will delete the user with all the exercises he had done 
 
 # delete exercise
 - [x] a DELETE request to **/api/users/:_id/exercises** with form-urlencoded(*description*, *duration*, *date*) will delete the exercise
+- [x] a DELETE request to **/api/exercise/:_exerciseId** will delete that exercise
  - a get request to **/api/users/:_id/logs**
  ```javascript
  {
@@ -113,13 +118,6 @@ checking the logs again
   ]
 }
 ```
-
-
-
-
-
-# using Authentication 
-- [ ] implement passportjs 
 
 
 

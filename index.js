@@ -116,6 +116,7 @@ app.get('/api/users/:_id/logs', async(req, res) => {
                 description: item.description,
                 duration: item.duration,
                 date: item.date.toDateString(),
+                id: item._id,
             }
         });
         res.json({
@@ -130,7 +131,26 @@ app.get('/api/users/:_id/logs', async(req, res) => {
         res.json({error: 'User not Found!'});
     }
 });
+// update an exercies 
+// Unlike PUT Request, PATCH does partial update e.g. Fields that need to be updated by the client, only that field is updated without modifying the other field
 
+app.patch('/api/exercise/:_exerciseId', async (req, res) => {
+    try {
+       let id = req.params._exerciseId; 
+        const {description, duration, date} = req.body;
+        const updateObj = {}
+        if (description) updateObj['description'] = description;
+        if (duration) updateObj['duration'] = duration;
+        if (date) updateObj['date'] = date;
+
+        let update = await Exercise.findOneAndUpdate({_id: id}, updateObj );
+        res.json(update);
+    }
+    catch(err) {
+        console.error(err);
+        res.send(err);
+    }
+});
 // delete user 
 app.delete('/api/users/:_id', async(req, res) => {
 
@@ -157,6 +177,20 @@ app.delete('/api/users/:_id/exercise', async(req, res) => {
         console.error(err);
     }
 });
+
+app.delete('/api/exercise/:_exerciseId', async (req, res) => {
+    try {
+        let id = req.params._exerciseId;
+        
+        const delexercise = await Exercise.deleteOne({_id: id});
+        res.json({delexercise});
+    }
+    catch(err) {
+        console.error(err);
+        res.send(err);
+    }
+});
+
 // check the health of the connection to mongoose
 app.get('/mongoose/health', (req, res) => {
     // if status is 1 then all good 
