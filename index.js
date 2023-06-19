@@ -6,8 +6,11 @@ require('dotenv').config()
 const mongoose = require('mongoose');
 mongoose.connect(process.env.URI);
 
+const signupRouter = require('./routes/signup');
+const loginRouter = require('./routes/login');
 const userRouter = require('./routes/users');
 const exerciseRouter = require('./routes/exercise');
+
 
 const app = express();
 app.use(bodyParser.urlencoded({extended: false}));
@@ -18,33 +21,18 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 app.use(cors());
 
+app.use("/login", loginRouter);
+app.use("/signup", signupRouter);
 app.use("/users", userRouter);
 app.use("/exercise", exerciseRouter);
 
 const PORT = process.env.PORT;
-const User = require('./models/user');
 
 
 app.get('/', (req, res) => {
     res.sendFile(__dirname + '/views/index.html');
 });
 
-app.post('/signup', (req, res) => {
-
-    try {
-        const { username, password} = req.body;
-    let user = new User({
-        username,
-        password,
-    });
-    user.save();
-   res.json({_id: user._id, username: user.username, passwrod: user.password}); 
-    }
-    catch(err){
-        console.error(err);
-        res.json({error: err});
-    }
-});
 
 
 // check the health of the connection to mongoose

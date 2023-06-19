@@ -5,14 +5,37 @@
 
 # create a new user with username and password  
 - [ ] *GET* **/login** should serve the login page
+- [x] implement bcryptjs
 - [x] *POST* to **/signup** with a form-urlencoded  *username* and *password* will create a new user 
+- [x] *POST* to **/signup** with a form-urlencoded  *username* and *password* will store the password hashed and salted
 - [x]  respond as json:
 
 ```javascript
 {
   _id: "5fb5853f734231456ccb3b05",
   username: "fcc_test",
-  password: "asldfhhlasdf"
+  password: "aidfasdfasdfldfhhlasdf"
+}
+```
+- [x] *POST* to **/login** with a form-urlencoded  *username* and *password* will check if the user existed or not 
+#### existed 
+```javascript
+{
+    "username": "fcc_test",
+    "id": "5fb5853f734231456ccb3b05"
+}
+
+```
+#### user do not exist
+```javascript
+{
+    "error": "User Not Found!"
+}
+```
+#### wrong password
+```javascript
+{
+    "error": "Wrong Password"
 }
 ```
 
@@ -29,7 +52,6 @@
 ```
 # using Authentication 
 - [ ] implement passportjs 
-- [ ] *POST* to **/login** with a form-urlencoded  *username* and *password* will check if the user existed 
 
 ## after login
 - [x] POST to **/users/:_id/exercises** with form-urlencoded *description*, *duration*, and optionally *date*. If no *date* is supplied, the current date will be used.
