@@ -1,5 +1,6 @@
 const express = require('express')
 const router = express.Router();
+const bcrypt = require('bcryptjs');
 
 const User = require('../models/user');
 const Exercise = require('../models/exercise');
@@ -14,7 +15,7 @@ router.get('/', async (req, res) => {
     }
 });
 
-router.post('/:id/exercises', async (req, res) => {
+router.post('/:id/', async (req, res) => {
 
     try {
     const {id} = req.params;
@@ -44,10 +45,10 @@ router.post('/:id/exercises', async (req, res) => {
     }
 });
 
-router.get('/:_id/logs', async(req, res) => {
+router.get('/:id/logs', async(req, res) => {
     try {
 
-        const id = req.params._id;
+        const id = req.params.id;
         const {from, to, limit} = req.query;
 
         const user = await User.findById(id);
@@ -89,28 +90,60 @@ router.get('/:_id/logs', async(req, res) => {
         res.json({error: 'User not Found!'});
     }
 });
+// update username or password
+router.patch('/', async(req, res) => {
+    try {
+        const {username, newUsername, password, newPassword} = req.body;
+        const user = await User.findOne({username: username});
+        if(user) {
+            bcrypt.compare(password, user.password, async (err, result) => {
+                if (err) console.error(err);
+                if(result) {
+                   if(newUsername) {
+                       const update = { username: newUsername};
+                       user.username = update.username;
+                       await user.save();
+                       res.json({_id: user.id, NewUsername: user.username});
 
+                   }
+                   else if(newPassword) {
+                       bcrypt.genSalt(10,(err, salt) => {
+                           if(err) console.error(err);
+                           bcrypt.hash(newPassword, salt, async (err, hash) => {
+                               if(err) console.error(err);
+                               
+                               const update = { password: hash};
+                               user.password = update.password;
+                               await user.save();
+                               res.send('new password has been set');
+
+                           })
+                       });
+                   }
+                }
+                else {
+                    res.send('Wrong Password!');
+                }
+            });
+        }
+        else {
+            res.send('User Not Found!');
+        }
+    }
+    catch(err){
+        console.error(err);
+        res.json({err});
+    }
+        
+});
 // delete user 
-router.delete('/:_id', async(req, res) => {
+router.delete('/:id', async(req, res) => {
 
-    const id = req.params._id;
+    const id = req.params.id;
     try {
         const delexercise = await Exercise.deleteMany({userId: id});
         const deluser = await User.deleteOne({_id: id});
         res.json({deleted_users: deluser, deleted_exercises: delexercise.deletedCount});
-    }
-    catch(err) {
-        console.error(err);
-    }
-});
-router.delete('/:_id/exercise', async(req, res) => {
-
-    try {
-        const { description, duration, date} = req.body;
-
-        const delexercise = await Exercise.deleteOne({description: description, duration: duration, date: date});
-        res.json({delexercise});
-
     }
     catch(err) {
         console.error(err);

@@ -7,16 +7,16 @@ router.post('/', async (req, res) => {
 
     try {
     const {username, password} = req.body;
-    const query = await User.findOne({username: username});
-        if(!query) {
+    const user = await User.findOne({username: username});
+        if(!user) {
             res.json({error: 'User Not Found!'});
         }
         else {
 
-            bcrypt.compare(password, query.password, (err, resulat) => {
+            bcrypt.compare(password, user.password, (err, resulat) => {
                 if(err) console.error(err);
                 if(resulat) {
-                    res.json({username: query.username, id:query.id});
+                    res.json({username: user.username, id:user.id});
                 }
                 else {
                     res.json({error: 'Wrong Password'});

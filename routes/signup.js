@@ -11,6 +11,10 @@ router.post('/', async (req, res) => {
         const { username, password} = req.body;
         
         // 10 is the saltround for bcryptjs 
+        // 13 is the sweet spot the user will wait some time only when signup and login
+        // the other option in hashing are scrypt 
+        // argon2 is the best i think
+        
         bcrypt.genSalt(10, function(err, salt) {
 
             if(err) console.error(err);
