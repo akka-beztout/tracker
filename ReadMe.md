@@ -55,9 +55,9 @@
 - [ ] implement passportjs 
 
 ## after login
-- [x] POST to **/users/:_id/exercises** with form-urlencoded *description*, *duration*, and optionally *date*. If no *date* is supplied, the current date will be used.
-- [x] The response returned from POST **/users/:_id/exercises** will be the user object with the exercise fields added.
-```javascript
+- [x] POST to **/users/:id/** with form-urlencoded *description*, *duration*, and optionally *date*. If no *date* is supplied, the current date will be used will create a log of that exercise for that user
+- [x] The response returned from POST **/users/:id** will be the user object with the exercise fields added.
+```json
 {
   username: "fcc_test",
   description: "test",
@@ -66,17 +66,18 @@
   _id: "5fb5853f734231456ccb3b05"
 }
 ```
-- [x] GET **/users/:_id/logs** to retrieve a full exercise log of any user.
-- [x] GET **/users/:_id/logs** returns a user object with a *count* property representing the number of exercises that belong to that user.
-- [x] Each item in the log array that is returned from GET **/users/:_id/logs** is an object that should have a *description*, *duration*, and *date* properties.
+- [x] GET **/users/:id/logs** to retrieve a full exercise log of any user.
+- [x] GET **/users/:id/logs** returns a user object with a *count* property representing the number of exercises that belong to that user.
+- [x] Each item in the log array that is returned from GET **/users/:id/logs** is an object that should have a *description*, *duration*, and *date* properties.
+- [x] The *description* property of any object in the log array that is returned from GET **/users/:id/logs** should be a string.
+- [x] The *duration* property of any object in the log array that is returned from GET **/users/:id/logs** should be a number.
+- [x] The *date* property of any object in the log array that is returned from GET **/users/:id/logs** should be a string.
 
-- [x] The *description* property of any object in the log array that is returned from GET **/users/:_id/logs** should be a string.
-- [x] The *duration* property of any object in the log array that is returned from GET **/users/:_id/logs** should be a number.
-- [x] The *date* property of any object in the log array that is returned from GET **/users/:_id/logs** should be a string.
-- [x] You can add **from**, **to** and **limit** parameters to a **GET** **/users/:_id/logs** request to retrieve part of the log of any user. *from* and *to* are dates in *yyyy-mm-dd* format. *limit* is an integer of how many logs to send back.
-- example: get request to **/users/:_id/logs?from=2019-01-01&to=2023-01-01&limit=3 => will give you 3 exercises from 2019=> 2023
+#### logs filter
+- [x] You can add **from**, **to** and **limit** parameters to a **GET** **/users/:id/logs** request to retrieve part of the log of any user. *from* and *to* are dates in *yyyy-mm-dd* format. *limit* is an integer of how many logs to send back.
+- example: get request to **/users/:id/logs?from=2019-01-01&to=2023-01-01&limit=3 => will give you 3 exercises from 2019=> 2023
 
-```javascript
+```json
 Log:
 
 {
@@ -90,16 +91,52 @@ Log:
   }]
 }
 ```
-# update exercise
-- [x] a PATCH request to **/exercise/:_exerciseId** with form-urlencoded(*description*, *duration*, *date*) will update the exercise 
+# update user
+- [x] patch request to **users/:id** with form-urlencoded (username oldPassword newPassword) will update the password 
+- [x] patch request to **users/:id** with form-urlencoded (username oldPassword newUsername) will update the username 
+```json
+[
+    {
+        "_id": "6491f1187dcd39e579bb0434",
+        "username": "akka"
+    },
+    {
+        "_id": "6491f1827dcd39e579bb043a",
+        "username": "imadddd"
+    }
+]
+```
+### wrong username when sending the patch request to **users/:id**
+```json
+User Not Found!
+```
+### worong password when sending the patch reqest to **users/:id**
+```json
+Wrong Password!
+```
+
+#### udpate username 
+```json
+{
+    "_id": "6491f1827dcd39e579bb043a",
+    "NewUsername": "imad"
+}
+```
+#### udpate password
+```json
+new password has been set
+```
 
 # delete user
-- [x] a DELETE request to **/users/:_id** will delete the user with all the exercises he had done 
+- [x] a DELETE request to **/users/:id** will delete the user with all the exercises he had done 
+# update exercise
+- [x] a PATCH request to **/exercise/:exerciseId** with form-urlencoded(*description*, *duration*, *date*) will update the exercise 
+
 
 # delete exercise
-- [x] a DELETE request to **/users/:_id/exercises** with form-urlencoded(*description*, *duration*, *date*) will delete the exercise
-- [x] a DELETE request to **/exercise/:_exerciseId** will delete that exercise
- - a get request to **/users/:_id/logs**
+- [x] a DELETE request to **/exercise/:exerciseId** will delete that exercise
+- [x] a DELETE request to **/exercise** with form-urlencoded(*description*, *duration*, *date*) will delete the exercise
+ - a get request to **/users/:id/logs**
  ```javascript
  {
   "username": "toufik",
@@ -120,7 +157,7 @@ Log:
 }
  ```
 ## after delettion
- - delete request to **/users/:_id/exercise** with form-urlencoded(*description*: dips, *duration*: 20, *date*: 2012-10-11)
+ - delete request to **/users/:id/exercise** with form-urlencoded(*description*: dips, *duration*: 20, *date*: 2012-10-11)
  ```javascript
  {
     "delexercise": {
