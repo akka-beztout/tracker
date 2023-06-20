@@ -28,7 +28,7 @@
 
 ```
 #### user do not exist
-```javascript
+```json
 {
     "error": "User Not Found!"
 }
@@ -92,8 +92,8 @@ Log:
 }
 ```
 # update user
-- [x] patch request to **users/:id** with form-urlencoded (username oldPassword newPassword) will update the password 
-- [x] patch request to **users/:id** with form-urlencoded (username oldPassword newUsername) will update the username 
+- [x] patch request to **users/:id** with form-urlencoded (*username* *oldPassword* *newPassword*) will update the password 
+- [x] patch request to **users/:id** with form-urlencoded (*username* *oldPassword* *newUsername*) will update the username 
 ```javascript
 [
     {
@@ -108,11 +108,15 @@ Log:
 ```
 ### wrong username when sending the patch request to **users/:id**
 ```json
-User Not Found!
+{
+    "error": "User Not Found!"
+}
 ```
 ### worong password when sending the patch reqest to **users/:id**
 ```json
-Wrong Password!
+{
+    "error": "Wrong Password!"
+}
 ```
 
 #### udpate username 
@@ -123,8 +127,10 @@ Wrong Password!
 }
 ```
 #### udpate password
-```javascript
-new password has been set
+```json
+{
+    "update": "new password has been set"
+}
 ```
 
 # delete user

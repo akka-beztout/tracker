@@ -115,19 +115,19 @@ router.patch('/', async(req, res) => {
                                const update = { password: hash};
                                user.password = update.password;
                                await user.save();
-                               res.send('new password has been set');
+                               res.json({update: 'new password has been set'});
 
                            })
                        });
                    }
                 }
                 else {
-                    res.send('Wrong Password!');
+                    res.json({error: 'Wrong Password!'});
                 }
             });
         }
         else {
-            res.send('User Not Found!');
+            res.json({error: 'User Not Found!'});
         }
     }
     catch(err){
