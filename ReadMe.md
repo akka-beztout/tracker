@@ -34,7 +34,7 @@
 }
 ```
 #### wrong password
-```javascript
+```json
 {
     "error": "Wrong Password"
 }
@@ -57,7 +57,7 @@
 ## after login
 - [x] POST to **/users/:id/** with form-urlencoded *description*, *duration*, and optionally *date*. If no *date* is supplied, the current date will be used will create a log of that exercise for that user
 - [x] The response returned from POST **/users/:id** will be the user object with the exercise fields added.
-```json
+```javascript
 {
   username: "fcc_test",
   description: "test",
@@ -77,7 +77,7 @@
 - [x] You can add **from**, **to** and **limit** parameters to a **GET** **/users/:id/logs** request to retrieve part of the log of any user. *from* and *to* are dates in *yyyy-mm-dd* format. *limit* is an integer of how many logs to send back.
 - example: get request to **/users/:id/logs?from=2019-01-01&to=2023-01-01&limit=3 => will give you 3 exercises from 2019=> 2023
 
-```json
+```javascript
 Log:
 
 {
@@ -94,7 +94,7 @@ Log:
 # update user
 - [x] patch request to **users/:id** with form-urlencoded (username oldPassword newPassword) will update the password 
 - [x] patch request to **users/:id** with form-urlencoded (username oldPassword newUsername) will update the username 
-```json
+```javascript
 [
     {
         "_id": "6491f1187dcd39e579bb0434",
@@ -116,14 +116,14 @@ Wrong Password!
 ```
 
 #### udpate username 
-```json
+```javascript
 {
     "_id": "6491f1827dcd39e579bb043a",
     "NewUsername": "imad"
 }
 ```
 #### udpate password
-```json
+```javascript
 new password has been set
 ```
 
